@@ -37,18 +37,26 @@ public class CadastroFuncionariosOriginal {
 	 *    e que tem dependentes. */
 	
 	public List<Funcionario> getInsalubridadeDependentes() {
-		return new ArrayList<Funcionario>();
+		return lstf.stream()
+		.filter(f -> (f.getInsalubridade() == true && f.getNroDependentes() > 0))
+		.toList();
 	}
 
-	/* b) Returna a quantidade de funcionáiros que tem dependentes. */
+	/* b) Retorna a quantidade de funcionáiros que tem dependentes. */
 	public long quantidadeFuncionariosComDependentes() {
-		return 0;
+		return lstf.stream()
+		.filter(f -> (f.getNroDependentes() > 0))
+		.count();
 	}
 
 	/* c) Retorna o somatório do valor do salário bruto de todos os 
 	 *    funcioniários que ganham mais de R$ 5.000,00. */
 	public double somatorioSalarioBruto() {
-		return 0;
+		double somatorio = lstf.stream()
+		.filter(f -> (f.getSalarioBruto() > 5000.00))
+		.mapToDouble(Funcionario :: getSalarioBruto)
+		.sum();
+		return somatorio;
 	}
 
 	/* d) Aplica uma taxa de aumento em todos os funcionários que
@@ -59,7 +67,10 @@ public class CadastroFuncionariosOriginal {
 	/* e) Retorna uma lista de strings com nome e a matrícula de todos os
 	 *    funcionários cujo salário bruto é 10% maior que o salário base. */
 	public List<String> getNomeMatriculaSalarioBrutoMaiorQueBase() {
-		return new ArrayList<String>();
+		return lstf.stream()
+		.filter(f -> (f.getSalarioBruto() > f.getSalarioBase()))
+		.map(Funcionario :: toString)
+		.toList();
 	}
 
 	/* f) Retorna a média salarial dos funcionários que não recebem insalubridade. */

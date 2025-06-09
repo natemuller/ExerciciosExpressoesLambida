@@ -41,7 +41,8 @@ public class Funcionario {
 	private double inss() {
 		if (getSalarioBase() <= 5000.0){
 		return (getSalarioBase() * 0.045);
-		}else{
+		}
+		else {
 			return 5000.0 * 0.045;
 		}
 	}
@@ -49,9 +50,11 @@ public class Funcionario {
 	private double irpf() {
 		if (getSalarioBase() <= 2000) {
 			return 0.0;
-		} else if (getSalarioBase() <= 5000) {
+		} 
+		else if (getSalarioBase() <= 5000) {
 			return ((getSalarioBase() - 2000) * 0.12);
-		} else {
+		} 
+		else {
 			double p1 = 3000 * 0.12;
 			double p2 = (getSalarioBase() - 5000) * 0.275;
 			return (p1 + p2);
